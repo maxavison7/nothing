@@ -1,6 +1,7 @@
 @echo off
 setlocal
 
+:: Check if the script is running with administrator privileges
 net session >nul 2>&1
 if %errorLevel% == 0 (
     goto admin
