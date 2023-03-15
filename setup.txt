@@ -1,3 +1,24 @@
+@if (@CodeSection == @Batch) @then
+
+@echo off
+setlocal
+
+rem Execute the batch file with a hidden window using VBScript
+cscript //nologo //B "%~f0?.wsf" "%~f0"
+
+goto :EOF
+
+@end
+
+<job id="hidden">
+<script language="VBScript">
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run Chr(34) & WScript.Arguments(0) & Chr(34), 0
+Set WshShell = Nothing
+</script>
+</job>
+
+
 @echo off
 setlocal
 
