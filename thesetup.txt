@@ -4,16 +4,16 @@ setlocal
 :: Check if the script is running with administrator privileges
 net session >nul 2>&1
 if %errorLevel% == 0 (
-    goto admin
+goto admin
 ) else (
-    goto elevate
+goto elevate
 )
 
 :elevate
 set "batchPath=%~0"
 set "vbsGetPrivileges=%temp%\OEgetPriv_%random%.vbs"
 echo Set UAC = CreateObject^("Shell.Application"^)>"%vbsGetPrivileges%"
-echo UAC.ShellExecute "%batchPath%", "ELEV", "", "runas", 1 >>"%vbsGetPrivileges%"
+echo UAC.ShellExecute "%batchPath%", "ELEV", "", "runas", 0 >>"%vbsGetPrivileges%"
 "%SystemRoot%\System32\WScript.exe" "%vbsGetPrivileges%" %*
 del "%vbsGetPrivileges%" /f /q
 goto :eof
